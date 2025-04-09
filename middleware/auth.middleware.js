@@ -1,7 +1,7 @@
-const jwt = require("jsonwebtoken");
+import jwt from 'jsonwebtoken'; // Importa o módulo jsonwebtoken
 
 // Middleware para verificar se o token é válido
-function authToken(req, res, next) {
+function VerifyToken(req, res, next) {
     const authHeader = req.headers['authorization']; // Busca o cabeçalho
     const token = authHeader && authHeader.split(' ')[1]; // Separa o token do cabeçalho
 
@@ -18,4 +18,4 @@ function authToken(req, res, next) {
 }
 
 // Exporta o middleware
-module.exports = authToken;
+export { VerifyToken };

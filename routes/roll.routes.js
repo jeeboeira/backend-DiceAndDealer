@@ -1,10 +1,10 @@
-const express = require('express');
+import express from 'express';
+import { VerifyToken } from '../middleware/auth.middleware.js';
 const router = express.Router();
-const Roll = require('../models/Roll.model');
-const authToken = require('../middleware/authMiddleware');
+import Roll from '../models/roll.model.js';
 
 // Rota para registrar uma nova rolagem
-router.post('/roll', authToken, async (req, res) => {
+router.post('/', VerifyToken, async (req, res) => {
     try {
         const { dado, rollResult } = req.body;
 
@@ -16,14 +16,14 @@ router.post('/roll', authToken, async (req, res) => {
         });
 
         await roll.save();
-        res.status(201).json(novaRoll);
+        res.status(201).json(roll);
     } catch (error) {
         res.status(500).json({ message: 'Erro ao registrar a rolagem', error });
     }
 });
 
 // Rota para pegar histórico do usuário
-router.get('/roll/history', authToken, async (req, res) => {
+router.get('/history', VerifyToken, async (req, res) => {
     try {
         const history = await Roll.find({ userId: req.user.id }).sort({ data: -1 });
         res.json(history);
@@ -33,4 +33,4 @@ router.get('/roll/history', authToken, async (req, res) => {
 });
 
 // Exporta as rotas
-module.exports = router;
+export default router;

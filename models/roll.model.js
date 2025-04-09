@@ -1,10 +1,10 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 // Define o schema de rolagem
 const rollSchema = new mongoose.Schema({
     userId: {
         type: mongoose.Schema.Types.ObjectId,   // Relaciona com o usuário
-        ref: 'Usuario',                         // Referência ao modelo de usuário
+        ref: 'User',                         // Referência ao modelo de usuário
         required: true
     },
     dado: {
@@ -22,4 +22,5 @@ const rollSchema = new mongoose.Schema({
 });
 
 // Exporta o modelo com o nome 'Roll'
-module.exports = mongoose.model('Roll', rollSchema);
+const Roll = mongoose.model('Roll', rollSchema);
+export default Roll;

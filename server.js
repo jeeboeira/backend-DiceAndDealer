@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import authRoutes from './routes/auth.routes.js';
+import rollRoutes from './routes/roll.routes.js';
 
 dotenv.config(); // Carrega variáveis de ambiente
 
@@ -13,10 +14,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use('/api', authRoutes);
+app.use('/api/auth', authRoutes);
+app.use('/api/rolls', rollRoutes);
 
 // Conecta com o banco MongoDB usando Mongoose
-mongoose.connect(process.env.MONGODB_URI)
+mongoose.connect(process.env.MONGO_URI)
     .then(() => {
         console.log('Connected to MongoDB');
         app.listen(3000, () => console.log('Server is running on port 3000'));
