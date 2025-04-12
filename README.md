@@ -95,20 +95,6 @@ diceAndDealer/
 
 ---
 
-## 🔄 Fluxo da Aplicação
-
-```mermaid
-graph TD;
-  A[Login no App] --> B[JWT Token armazenado];
-  B --> C[Usuário rola o dado];
-  C --> D[Envia resultado via API];
-  D --> E[Salva no MongoDB];
-  E --> F[Usuário visualiza histórico];
-  F --> G[Pode editar ou deletar];
-```
-
----
-
 ## 📦 Repositórios
 
 - 🔗 [Frontend - Ionic](https://github.com/jeeboeira/diceAndDealer)
